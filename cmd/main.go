@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/dewviee/learn-go/config"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
@@ -20,5 +21,11 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	fmt.Printf("Server running on port %d\n", cfg.Server.Port)
+	app := fiber.New(config.GetFiberConfig(cfg.Server))
+
+	app.Get("/hello", func(c *fiber.Ctx) error {
+		return c.SendString("Hello World")
+	})
+
+	log.Fatal(app.Listen(fmt.Sprintf("%s:%d", cfg.Server.Address, cfg.Server.Port)))
 }
