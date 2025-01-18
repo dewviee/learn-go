@@ -11,12 +11,6 @@ type Config struct {
 	Server   ServerConfig
 }
 
-type DBConfig struct {
-	NAME     string
-	PASSWORD string
-	PORT     string
-}
-
 // Docs: https://github.com/sethvargo/go-envconfig?tab=readme-ov-file#configuration
 func Get(ctx context.Context) (Config, error) {
 	var config Config

@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/dewviee/learn-go/config"
+	"github.com/dewviee/learn-go/database"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -20,6 +21,8 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	_ = database.Init(cfg.Database)
 
 	app := fiber.New(config.GetFiberConfig(cfg.Server))
 
